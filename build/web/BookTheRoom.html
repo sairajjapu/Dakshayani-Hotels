@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+	<html>
+            <head>
+		<title>Dakshayini.Hotels</title>
+		    <style>
+		        body {
+                           font-family: Arial, sans-serif;
+                           margin: 0;
+                           padding: 0;
+                           height: 100%;
+                           background-color: #f4f4f4;
+                        }
+                        header {
+                          background-color: white;
+                          color: #000080;
+                          padding: 3px 0;
+                         text-align: center;
+                       }
+                       .NavBar {
+                          /*display: flex;*/
+                          justify-content: space-evenly;
+                          align-items: center;
+                          padding: 0 10px;
+                        }
+        .NavBar img {
+            height: 44px;
+        }
+			h1 {
+					font-size:30px;
+				}
+                        h2{
+                              color: #000080;
+                        }
+                        header nav a {
+                             margin: 0 15px;
+                             color: #5588BB;
+                             text-decoration: none;
+                             font-size: 16px;
+                        }
+                        header nav a:hover {
+                             text-decoration: underline;
+                         }
+                        nav {
+                            display: inline-flex;
+                        }
+                        input[type=date]{
+                                    width: 50%;
+                                    padding: 3px 5px;
+                                    margin: 8px 0;
+                                    box-sizing: border-box;
+                        }
+			footer {
+				background-color: #6699CC;
+				color: #fff;
+				text-align: center;
+                                position: absolute;
+				padding: 10px 0;
+				width: 100%;
+				bottom: 0;
+			}
+			.intro{
+				background-color: #fff;
+				padding: 10px;
+				margin: 10px 0;
+				border-radius: 5px;  
+			}
+                        button {
+                               padding: 7px 9px; 
+                               font-size: 16px;  
+                               color: #000;
+                               background-color: #b0c4de;
+                               border: none; 
+                               border-radius: 5px; 
+                               cursor: pointer; 
+                               align-content: center;   
+                        }
+                        .MainForm {
+                            margin: 20px auto;
+                            max-width: 330px;
+                            padding: 20px;
+                            background-color: #f0f0f0;
+                            border-radius: 10px;
+                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                        }
+			</style>
+		</head>
+		<body>
+			<header>
+			  <div class="NavBar">
+				<image src="Dakshayani.jpg" width="70" height="65" alt="D-Logo"/>
+				<h1>Dakshayini Hotels</h1>
+                                <nav>
+                                   <a href="index.html">Home</a>
+                                   <a href="BookTheRoom.html">Book</a>
+                                   <a href="verify.html">Verify</a>
+                                   <a href="about.html">AboutUs</a>
+                                </nav>
+			  </div>
+			</header>
+                        <main>
+			    <div class="MainForm" align="center">
+                                <h2>Check Dates</h2>
+			        <form id="dateForm" action="SearchRooms.jsp" method="post">
+                                    <label for="checkin">Check-In Date:</label>
+				    <input type="date" name="checkInDate" id="checkInDate" required /><br><br>
+                                    <label for="checkOut">Check-Out Date:</label>
+			            <input type="date" name="checkOutDate" id="checkOutDate" required /><br><br>
+				    <button type="submit">Check Availability</button>
+				</form>
+                                <strong><p id="errorMessage" style="color:red;"></p></strong>
+			    </div>
+                        </main>
+                    <script> 
+                        document.getElementById('dateForm').addEventListener('submit', function(event) {
+                             const checkIn = document.getElementById('checkInDate').value;
+                             const checkOut = document.getElementById('checkOutDate').value;
+                             const errorMessage = document.getElementById('errorMessage');
+                             const today = new Date();
+                             today.setHours(0, 0, 0, 0); 
+                             const checkInDate = new Date(checkIn);
+                             const checkOutDate = new Date(checkOut);
+                            if (checkInDate < today) {
+                                    errorMessage.textContent = 'Check-In date cannot be before today.';
+                                    event.preventDefault();
+                                    return;
+                            }
+                            if (checkOutDate <= checkInDate) {
+                                    errorMessage.textContent = 'Check-Out date must be later than Check-In date.';
+                                    event.preventDefault();
+                                    return;
+                            }
+                            errorMessage.textContent = '';
+                    });    
+                    </script>
+                    <footer align="center">
+                        <div>
+                            <h3>Dakshayani Hotels</h3>
+                        </div>
+                        <a href="www.linkedin.com/in/sairaj-japu-6a04842a0">Designed by Sairaj</a>
+                    </footer>
+		</body>
+	</html>
